@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FARMAN / ファーマン — The 15 Volumes of My Life (2008–Present)</title>
+  <!-- Preconnect & exact font subsets as requested -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+JP:wght@500&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --paper: #EDEBE6;
+      --sheet: #F4F2ED;
+      --ink: #141414;
+      --muted: #6D6A63;
+      --cobalt: #1F3FB0;
+      --rule: rgba(20, 20, 20, .9);
+      --ease: cubic-bezier(.2, .8, .2, 1);
+      --H: min(46vh, 31vw);
+      --sans: "Inter Tight", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @media (pointer: fine) {
+      html, body, button, a, .tape {
+        cursor: none !important;
+      }
+    }
+
+    /* Probe to measure exact resolved --H in pixels */
+    #probe {
+      position: fixed;
+      top: -9999px;
+      left: -9999px;
+      width: 0;
+      height: var(--H);
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    /* Typography & Boxed Label System */
+    .lbl {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 10.5px;
+      line-height: 1;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 21px;
+      padding: 0 8px;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      outline: none;
+    }
+
+    /* Fixed Paper Grain Layer */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: .55;
+      background-repeat: repeat;
+      background-size: 220px 220px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .45 0 0 0 0 .42 0 0 0 0 .38 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* 1. Top Bar */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 84px;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .topbar a, .topbar button {
+      pointer-events: auto;
+    }
+
+    .topbar-left {
+      justify-self: start;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      color: var(--cobalt);
+      text-decoration: none;
+      pointer-events: auto;
+    }
+
+    .logo-zh {
+      font-family: "Noto Serif SC", serif;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: .04em;
+    }
+
+    .logo-en {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 9px;
+      line-height: 1;
+      letter-spacing: .34em;
+      padding-left: .34em;
+    }
+
+    .topbar-right {
+      justify-self: end;
+      color: var(--ink);
+    }
+
+    /* 2. Decade Tabs */
+    .tabs {
+      position: fixed;
+      left: 50%;
+      top: calc(50% - var(--H) / 2 - 86px);
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .tab-ind {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 23px;
+      background-color: var(--cobalt);
+      transition: transform .6s var(--ease), width .6s var(--ease);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .tab-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 23px;
+      padding: 0 11px;
+      border: 1px solid var(--rule);
+      margin-left: -1px;
+      white-space: nowrap;
+      color: var(--ink);
+      transition: color .45s var(--ease);
+    }
+
+    .tab-btn:first-of-type {
+      margin-left: 0;
+    }
+
+    .tab-btn.active {
+      color: #FFFFFF;
+    }
+
+    /* 3. The Shelf (3D Stage) */
+    .shelf {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      top: calc(50% - var(--H) / 2 - 40px);
+      height: calc(var(--H) + 80px);
+      perspective: 2200px;
+      perspective-origin: 50% 50%;
+      touch-action: pan-y;
+      z-index: 10;
+    }
+
+    .stage {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      transform-style: preserve-3d;
+    }
+
+    .tape {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      transform-style: preserve-3d;
+      will-change: transform;
+      --shade-sp: 0;
+      --shade-cv: .5;
+    }
+
+    .face {
+      position: absolute;
+      height: var(--H);
+      top: calc(var(--H) * -0.5);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 2px;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .face::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: #000000;
+      pointer-events: none;
+    }
+
+    .face.sp {
+      width: var(--ws);
+      left: calc(var(--ws) * -0.5);
+      transform: translateZ(calc(var(--d) * 0.5));
+    }
+
+    .face.sp::after {
+      opacity: var(--shade-sp);
+    }
+
+    .face.cv {
+      width: var(--d);
+      left: calc(var(--d) * -0.5);
+      transform: rotateY(90deg) translateZ(calc(var(--ws) * 0.5));
+      box-shadow: 0 30px 60px -28px rgba(20, 16, 10, .55);
+    }
+
+    .face.cv::after {
+      opacity: var(--shade-cv);
+    }
+
+    /* 4. Play Ring */
+    .play-ring {
+      position: fixed;
+      width: 42px;
+      height: 42px;
+      margin-left: -21px;
+      margin-top: -21px;
+      border-radius: 50%;
+      border: 1px solid var(--cobalt);
+      background-color: rgba(237, 235, 230, .75);
+      color: var(--cobalt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 25;
+      will-change: transform;
+      transform: scale(0);
+    }
+
+    .play-ring svg {
+      width: 12px;
+      height: 12px;
+      transform: translateX(1.5px);
+      fill: currentColor;
+    }
+
+    /* 5. Caption */
+    .caption {
+      position: fixed;
+      left: 50%;
+      top: calc(50% + var(--H) / 2 + 30px);
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    .cap-mask {
+      position: relative;
+      overflow: hidden;
+      width: min(92vw, 760px);
+      text-align: center;
+      display: grid;
+      place-items: center;
+    }
+
+    .cap-mask > span {
+      grid-area: 1 / 1;
+      display: block;
+      width: 100%;
+      will-change: transform;
+    }
+
+    .cap-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 31px;
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      padding-bottom: 2px;
+    }
+
+    .cap-sub {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 10.5px;
+      line-height: 1.2;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--cobalt);
+    }
+
+    .cap-year {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: .08em;
+      color: var(--ink);
+    }
+
+    /* 6. Arrows */
+    .arrow {
+      position: fixed;
+      top: calc(50% + var(--H) / 2 + 40px);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+      z-index: 25;
+    }
+
+    .arrow-prev {
+      left: 20px;
+    }
+
+    .arrow-next {
+      right: 20px;
+    }
+
+    /* 7. Footer */
+    .footer {
+      position: fixed;
+      left: 32px;
+      right: 32px;
+      bottom: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .footer a {
+      color: var(--ink);
+      text-decoration: none;
+      pointer-events: auto;
+    }
+
+    /* 8. Custom Cursor */
+    .cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 58px;
+      height: 58px;
+      margin-left: -29px;
+      margin-top: -29px;
+      z-index: 100;
+      pointer-events: none;
+      display: none;
+      will-change: transform;
+    }
+
+    @media (pointer: fine) {
+      .cursor {
+        display: block;
+      }
+    }
+
+    .cur-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+      background-color: transparent;
+      transition: transform .5s var(--ease), background-color .4s var(--ease), border-color .4s var(--ease);
+    }
+
+    .cur-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      margin-top: -3px;
+      border-radius: 50%;
+      background-color: var(--ink);
+      transition: transform .4s var(--ease);
+    }
+
+    .cur-lbl {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 10px;
+      line-height: 1.25;
+      letter-spacing: .1em;
+      color: #FFFFFF;
+      text-align: center;
+      transform: scale(0);
+      transition: transform .45s var(--ease);
+    }
+
+    .cursor.spine .cur-ring {
+      transform: scale(.72);
+    }
+
+    .cursor.btn .cur-ring {
+      transform: scale(.55);
+    }
+    .cursor.btn .cur-dot {
+      transform: scale(0);
+    }
+
+    .cursor.open .cur-ring {
+      transform: scale(1.75);
+      background-color: var(--cobalt);
+      border-color: var(--cobalt);
+    }
+    .cursor.open .cur-dot {
+      transform: scale(0);
+    }
+    .cursor.open .cur-lbl {
+      transform: scale(1);
+    }
+
+    /* 9. Detail Sheet Dialog */
+    .detail {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background-color: var(--sheet);
+      visibility: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4vw;
+      padding: 110px 6vw 56px 7vw;
+      align-items: center;
+      will-change: clip-path, transform;
+    }
+
+    .detail-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .detail-close {
+      position: absolute;
+      top: 31px;
+      left: 32px;
+      z-index: 5;
+      pointer-events: auto;
+    }
+
+    .detail-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 520px;
+      gap: 18px;
+    }
+
+    .d-mask {
+      overflow: hidden;
+      display: block;
+    }
+
+    .d-line {
+      display: block;
+      will-change: transform;
+      transform: translateY(110%);
+    }
+
+    .d-sub {
+      color: var(--cobalt);
+    }
+
+    .d-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(44px, 5.4vw, 84px);
+      line-height: 1;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      padding-bottom: 4px;
+    }
+
+    .d-meta {
+      color: var(--muted);
+    }
+
+    .d-syn {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 42ch;
+      color: var(--ink);
+    }
+
+    .d-cred {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .d-watch {
+      height: 44px;
+      padding: 0 20px;
+      margin-top: 10px;
+      border: 1px solid var(--cobalt);
+      color: var(--cobalt);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .detail-right {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .poster-svg {
+      height: min(100%, 78vh);
+      aspect-ratio: 474 / 900;
+      width: auto;
+      max-width: 100%;
+      display: block;
+      filter: drop-shadow(0 28px 50px rgba(20, 16, 10, .28));
+    }
+
+    /* Responsive (<= 767px) */
+    @media (max-width: 767px) {
+      :root {
+        --H: min(60vw, 40svh);
+      }
+
+      .lbl {
+        font-size: 9px;
+      }
+
+      .topbar {
+        height: 64px;
+        padding: 0 16px;
+        grid-template-columns: 1fr auto 1fr;
+      }
+
+      .logo-zh {
+        font-size: 17px;
+      }
+
+      .logo-en {
+        font-size: 7.5px;
+      }
+
+      .topbar-right {
+        display: none;
+      }
+
+      .tabs {
+        top: calc(50% - var(--H) / 2 - 70px);
+      }
+
+      .tab-btn {
+        padding: 0 7px;
+        font-size: 9px;
+      }
+
+      .cap-title {
+        font-size: 24px;
+      }
+
+      .arrow-prev {
+        left: 6px;
+      }
+
+      .arrow-next {
+        right: 6px;
+      }
+
+      .footer {
+        left: 16px;
+        right: 16px;
+        bottom: 18px;
+      }
+
+      .detail {
+        grid-template-columns: 1fr;
+        padding: 84px 22px 40px;
+        gap: 24px;
+        overflow-y: auto;
+        align-items: start;
+      }
+
+      .detail-top {
+        height: 64px;
+      }
+
+      .detail-close {
+        left: 16px;
+        top: 21px;
+      }
+
+      .detail-right {
+        order: -1;
+        height: 46svh;
+      }
+
+      .poster-svg {
+        height: 46svh;
+      }
+
+      .d-title {
+        font-size: 42px;
+      }
+
+      .d-syn {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hidden measurement probe for --H -->
+  <div id="probe" aria-hidden="true"></div>
+
+  <!-- 1. Top bar -->
+  <header class="topbar">
+    <a href="#back" class="lbl box topbar-left" data-btn>BACK / 戻る</a>
+    <a href="#top" class="logo" data-btn aria-label="Farman Home">
+      <span class="logo-zh">莱昂·瓦萨里</span>
+      <span class="logo-en">FARMAN · VASARI</span>
+    </a>
+    <div class="lbl topbar-right">BORN 5 NOV 2008年 · RAJBAGH</div>
+  </header>
+
+  <!-- 2. Decade / Chapter tabs -->
+  <nav class="tabs" aria-label="Life Chapters">
+    <div class="tab-ind" id="tabInd"></div>
+    <button type="button" class="lbl tab-btn" data-decade="all" data-btn>All / すべて</button>
+    <button type="button" class="lbl tab-btn" data-decade="identity" data-btn>Identity</button>
+    <button type="button" class="lbl tab-btn" data-decade="passions" data-btn>Passions</button>
+    <button type="button" class="lbl tab-btn" data-decade="mindset" data-btn>Mindset</button>
+    <button type="button" class="lbl tab-btn" data-decade="future" data-btn>Future</button>
+  </nav>
+
+  <!-- 3. The 3D VHS / Book Shelf -->
+  <section class="shelf" id="shelf" aria-label="Life chapters shelf">
+    <div class="stage" id="stage"></div>
+  </section>
+
+  <!-- 4. Play Ring -->
+  <button type="button" class="play-ring" id="playRing" aria-label="Open book" data-btn>
+    <svg viewBox="0 0 12 12" aria-hidden="true">
+      <polygon points="2,1 11,6 2,11"></polygon>
+    </svg>
+  </button>
+
+  <!-- 5. Caption -->
+  <div class="caption" aria-live="polite">
+    <div class="cap-mask cap-title" id="capTitle"></div>
+    <div class="cap-mask cap-sub" id="capSub"></div>
+    <div class="cap-mask cap-year" id="capYear"></div>
+  </div>
+
+  <!-- 6. Navigation Arrows -->
+  <button type="button" class="arrow arrow-prev" id="prevBtn" aria-label="Previous book" data-btn>
+    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+      <path d="M5 1L1 5L5 9M1 5H17"/>
+    </svg>
+  </button>
+  <button type="button" class="arrow arrow-next" id="nextBtn" aria-label="Next book" data-btn>
+    <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+      <path d="M13 1L17 5L13 9M17 5H1"/>
+    </svg>
+  </button>
+
+  <!-- 7. Footer -->
+  <footer class="footer">
+    <div class="lbl">© FARMAN · CITIZEN OF INDIA · 15 VOLUMES</div>
+    <div class="lbl">
+      <a href="#in" data-btn>IND</a> / <a href="#tech" data-btn>TECH</a>
+    </div>
+  </footer>
+
+  <!-- Paper Grain Overlay (above shelf & caption, below detail sheet) -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 8. Detail Dialog -->
+  <div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+    <button type="button" class="lbl box detail-close" id="closeBtn" data-btn>CLOSE / 閉じる</button>
+    <div class="detail-top">
+      <div class="logo">
+        <span class="logo-zh">莱昂·瓦萨里</span>
+        <span class="logo-en">FARMAN · VASARI</span>
+      </div>
+    </div>
+
+    <div class="detail-left">
+      <div class="d-mask"><span class="d-line lbl d-sub" id="dSub"></span></div>
+      <div class="d-mask"><h1 class="d-line d-title" id="dTitle"></h1></div>
+      <div class="d-mask"><span class="d-line lbl d-meta" id="dMeta"></span></div>
+      <div class="d-mask"><p class="d-line d-syn" id="dSyn"></p></div>
+      <div class="d-mask"><p class="d-line d-cred" id="dCred">Written &amp; lived by Farman · Born 5 Nov 2008 at Rajbagh · Legends School. 監督作品</p></div>
+      <div class="d-mask">
+        <div class="d-line">
+          <button type="button" class="lbl d-watch" id="watchBtn" data-btn>WATCH THE FILM / 映画を見る</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-right">
+      <svg class="poster-svg" viewBox="0 0 474 900" aria-hidden="true">
+        <defs>
+          <clipPath id="posterClip">
+            <rect x="0" y="0" width="474" height="900" rx="3" ry="3"/>
+          </clipPath>
+          <filter id="inkFilter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011" numOctaves="3" seed="7" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="120" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <mask id="inkMask" maskUnits="userSpaceOnUse" x="-200" y="-200" width="874" height="1300">
+            <rect x="-200" y="-200" width="874" height="1300" fill="black"/>
+            <g filter="url(#inkFilter)" fill="white" id="inkBlobs">
+              <circle cx="150" cy="330" r="0"/>
+              <circle cx="340" cy="600" r="0"/>
+              <circle cx="250" cy="120" r="0"/>
+              <circle cx="90"  cy="760" r="0"/>
+              <circle cx="400" cy="250" r="0"/>
+              <circle cx="260" cy="860" r="0"/>
+              <circle cx="230" cy="470" r="0"/>
+            </g>
+          </mask>
+        </defs>
+        <g clip-path="url(#posterClip)" mask="url(#inkMask)">
+          <image id="posterImg" x="0" y="0" width="474" height="900" preserveAspectRatio="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 9. Custom Ring Cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cur-ring"></div>
+    <div class="cur-dot"></div>
+    <div class="cur-lbl">
+      <span>OPEN</span>
+      <span>開く</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* =====================================================================
+         1. ORIGINAL HIGGSFIELD SPRITE SHEETS & EXACT CROP BOXES
+         ===================================================================== */
+      const SHEET = {
+        covers: [
+          'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261029_010644_837e04ca-2418-45c1-b8e0-0233265c4cd5.png&w=1744&q=85',
+          1744,
+          2336
+        ],
+        spines: [
+          'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261029_010738_a3e47ead-18f2-4974-9468-06d16a25edc5.png&w=2688&q=85',
+          2688,
+          1152
+        ],
+        fix: [
+          'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261029_010831_3ebb874b-93dc-433e-87ed-6299aba720f0.png&w=1520&q=85',
+          1520,
+          2688
+        ],
+        fix2: [
+          'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261029_092020_f96bc094-db7b-46de-9298-074a24e0a3b8.png&w=1520&q=85',
+          1520,
+          2688
+        ]
+      };
+
+      const CROP = {
+        'spine-valley':   ['spines', 266, 31, 189, 1089],
+        'cover-valley':   ['covers', 497, 72, 344, 659],
+        'spine-bluehour': ['spines', 492, 31, 189, 1089],
+        'cover-bluehour': ['covers', 914, 72, 342, 659],
+        'spine-river':    ['fix',    197, 54, 324, 2566],
+        'cover-river':    ['covers', 1332, 72, 344, 659],
+        'spine-summer':   ['spines', 937, 31, 188, 1089],
+        'cover-summer':   ['covers', 74, 813, 344, 676],
+        'spine-green':    ['spines', 1157, 31, 185, 1090],
+        'cover-green':    ['covers', 497, 815, 344, 674],
+        'spine-noon':     ['spines', 44, 32, 184, 1088],
+        'cover-noon':     ['covers', 74, 72, 347, 659],
+        'spine-observer': ['fix2',   371, 15, 349, 2655],
+        'cover-observer': ['covers', 915, 815, 342, 675],
+        'spine-birds':    ['spines', 1573, 31, 183, 1089],
+        'cover-birds':    ['covers', 1331, 815, 345, 675],
+        'spine-storm':    ['fix2',   808, 15, 347, 2656],
+        'cover-storm':    ['covers', 74, 1571, 345, 681],
+        'spine-tide':     ['spines', 2012, 31, 188, 1089],
+        'cover-tide':     ['covers', 496, 1577, 343, 678],
+        'spine-war':      ['spines', 2236, 31, 189, 1089],
+        'cover-war':      ['covers', 913, 1579, 343, 676],
+        'spine-door':     ['spines', 2462, 31, 188, 1089],
+        'cover-door':     ['covers', 1331, 1579, 344, 677]
+      };
+
+      // Preload all 4 Higgsfield generation sheets immediately
+      Object.values(SHEET).forEach(([url]) => {
+        const img = new Image();
+        img.src = url;
+      });
+
+      function applyCropStyle(el, cropKey) {
+        const [sheetId, x, y, w, h] = CROP[cropKey];
+        const [url, W, H] = SHEET[sheetId];
+        el.style.backgroundImage = `url("${url}")`;
+        el.style.backgroundSize = `${((W / w) * 100).toFixed(4)}% ${((H / h) * 100).toFixed(4)}%`;
+        el.style.backgroundPosition = `${((x / (W - w)) * 100).toFixed(4)}% ${((y / (H - h)) * 100).toFixed(4)}%`;
+      }
+
+      /* =====================================================================
+         2. 15 VOLUMES OF FARMAN'S LIFE (WITH ORIGINAL VHS ART & COLOURS)
+         ===================================================================== */
+      const COUNT = 15;
+
+      const FILMS = [
+        {
+          id: 'whoiam',
+          artId: 'noon',
+          title: 'Who I Am: Farman',
+          romaji: 'BOOK I · CITIZEN & CRITICAL THINKER',
+          kanji: '灰の正午',
+          year: '5 NOV 2008',
+          decade: 'identity',
+          genre: 'Core Identity',
+          min: 'VOL 01',
+          synopsis: 'I am Farman—a proud citizen of India, a responsible voter, and a critical thinker deeply passionate about technology. Born on 5 November 2008 at Rajbagh, I completed my schooling at Legends School, building a foundation of curiosity, analytical reasoning, and purpose.'
+        },
+        {
+          id: 'hobbies',
+          artId: 'valley',
+          title: 'The Arena of Motion',
+          romaji: 'BOOK II · CRICKET, HORSE RIDING & CLIMBING',
+          kanji: '静かな谷',
+          year: 'ATHLETICS',
+          decade: 'passions',
+          genre: 'Hobbies & Sport',
+          min: 'VOL 02',
+          synopsis: 'My hobbies forge my physical and mental endurance: playing cricket, long-distance running, daily fitness and gym training, horse riding across open trails, and climbing steep heights. Every discipline teaches balance, focus, and relentless energy.'
+        },
+        {
+          id: 'rajbagh',
+          artId: 'bluehour',
+          title: 'Roots in Rajbagh',
+          romaji: 'BOOK III · BORN 5 NOVEMBER 2008',
+          kanji: '青の刻',
+          year: '2008 · RAJBAGH',
+          decade: 'identity',
+          genre: 'Origins & Heritage',
+          min: 'VOL 03',
+          synopsis: 'Born on the 5th of November 2008 in Rajbagh, my earliest chapters were shaped by the warmth of home, culture, and community. The streets and seasons of Rajbagh instilled a deep appreciation for heritage and grounded resilience.'
+        },
+        {
+          id: 'legends',
+          artId: 'river',
+          title: 'Days at Legends School',
+          romaji: 'BOOK IV · ALMA MATER & FOUNDATIONS',
+          kanji: '塩の川',
+          year: 'LEGENDS SCHOOL',
+          decade: 'identity',
+          genre: 'Education',
+          min: 'VOL 04',
+          synopsis: 'Completing my schooling at Legends School was a defining era of growth. Classroom debates, friendships, mentors, and academic milestones sharpened my voice and turned early curiosity into lifelong discipline.'
+        },
+        {
+          id: 'tech',
+          artId: 'summer',
+          title: 'Passionate to Technology',
+          romaji: 'BOOK V · CODE, SYSTEMS & INNOVATION',
+          kanji: '最後の夏',
+          year: 'DIGITAL AGE',
+          decade: 'passions',
+          genre: 'Technology',
+          min: 'VOL 05',
+          synopsis: 'Driven by an unshakeable passion for technology, I explore how software, hardware, and modern computing transform human potential. Technology is not merely a tool to me—it is a craft for solving real-world problems.'
+        },
+        {
+          id: 'critical',
+          artId: 'green',
+          title: 'The Critical Thinker',
+          romaji: 'BOOK VI · LOGIC, INQUIRY & REASON',
+          kanji: '緑の道',
+          year: 'PHILOSOPHY',
+          decade: 'mindset',
+          genre: 'Critical Thought',
+          min: 'VOL 06',
+          synopsis: 'To be a critical thinker is to look beneath surface assumptions. I believe in questioning narratives, weighing evidence, thinking independently, and approaching every complex challenge with clarity and logic.'
+        },
+        {
+          id: 'citizen',
+          artId: 'observer',
+          title: 'Citizen & Voter of India',
+          romaji: 'BOOK VII · DEMOCRACY, DUTY & VOICE',
+          kanji: '観察者',
+          year: 'INDIA',
+          decade: 'identity',
+          genre: 'Civic Duty',
+          min: 'VOL 07',
+          synopsis: 'As a proud citizen of India and an active voter, I value constitutional responsibility, democratic participation, and nation-building. True citizenship combines informed awareness with integrity and service.'
+        },
+        {
+          id: 'iron',
+          artId: 'birds',
+          title: 'Iron & Endurance',
+          romaji: 'BOOK VIII · FITNESS, GYM & RUNNING',
+          kanji: '落ちた鳥',
+          year: 'DISCIPLINE',
+          decade: 'passions',
+          genre: 'Gym & Running',
+          min: 'VOL 08',
+          synopsis: 'Strength is earned one rep and one kilometer at a time. Between heavy sessions in the gym and morning runs that test the lungs, fitness keeps my body strong so my mind can stay sharp.'
+        },
+        {
+          id: 'pitch',
+          artId: 'storm',
+          title: 'Twenty-Two Yards',
+          romaji: 'BOOK IX · CRICKET & TEAM STRATEGY',
+          kanji: '嵐の灯',
+          year: 'THE PITCH',
+          decade: 'passions',
+          genre: 'Cricket',
+          min: 'VOL 09',
+          synopsis: 'On the cricket field, every delivery demands split-second judgment, patience under pressure, and trust in your teammates. Cricket taught me how to read the game and stay composed in decisive moments.'
+        },
+        {
+          id: 'saddle',
+          artId: 'tide',
+          title: 'Hooves & High Ridges',
+          romaji: 'BOOK X · HORSE RIDING & CLIMBING',
+          kanji: '長い潮',
+          year: 'EXPEDITION',
+          decade: 'passions',
+          genre: 'Riding & Climbing',
+          min: 'VOL 10',
+          synopsis: 'Whether commanding rhythm in the saddle while horse riding or finding the next handhold while climbing vertical rock faces, adventure teaches courage, calm breathing, and respect for nature.'
+        },
+        {
+          id: 'resilience',
+          artId: 'war',
+          title: 'Architecture of Grit',
+          romaji: 'BOOK XI · OVERCOMING OBSTACLES',
+          kanji: '静かな戦争',
+          year: 'CHARACTER',
+          decade: 'mindset',
+          genre: 'Self Mastery',
+          min: 'VOL 11',
+          synopsis: 'Every setback is raw material for a comeback. Through discipline learned at Legends School, on the field, and in the gym, I treat obstacles as training grounds that refine patience and determination.'
+        },
+        {
+          id: 'brotherhood',
+          artId: 'door',
+          title: 'Circles of Loyalty',
+          romaji: 'BOOK XII · FAMILY, MENTORS & FRIENDS',
+          kanji: '赤い扉',
+          year: 'COMMUNITY',
+          decade: 'mindset',
+          genre: 'Brotherhood',
+          min: 'VOL 12',
+          synopsis: 'No journey is walked alone. From family in Rajbagh to classmates from Legends School and teammates on the cricket ground, loyalty, honesty, and mutual respect define the people I stand with.'
+        },
+        {
+          id: 'architect',
+          artId: 'valley',
+          title: 'Building Tomorrow',
+          romaji: 'BOOK XIII · ENGINEERING IDEAS INTO REALITY',
+          kanji: '静かな谷',
+          year: 'INNOVATION',
+          decade: 'future',
+          genre: 'Future Tech',
+          min: 'VOL 13',
+          synopsis: 'Looking ahead, I aim to merge critical thinking with modern technology to build systems that matter—tools that empower people, elevate communities, and push the boundaries of what is possible.'
+        },
+        {
+          id: 'horizons',
+          artId: 'river',
+          title: 'Beyond the Valley',
+          romaji: 'BOOK XIV · EXPANDING HORIZONS',
+          kanji: '塩の川',
+          year: 'EXPLORATION',
+          decade: 'future',
+          genre: 'Worldview',
+          min: 'VOL 14',
+          synopsis: 'Rooted in Rajbagh and proud of my Indian identity, my gaze reaches across global horizons—seeking new knowledge, higher summits to climb, and broader arenas to test my skills.'
+        },
+        {
+          id: 'unwritten',
+          artId: 'storm',
+          title: 'The Unwritten Horizon',
+          romaji: 'BOOK XV · THE NEXT CHAPTER AWAITS',
+          kanji: '嵐の灯',
+          year: 'ONWARD',
+          decade: 'future',
+          genre: 'Manifesto',
+          min: 'VOL 15',
+          synopsis: 'Fifteen volumes mark only the beginning. Armed with youth, critical thought, athletic vitality, civic pride, and a passion for technology, my greatest chapters are being written right now.'
+        }
+      ];
+
+      /* =====================================================================
+         3. DOM REFERENCES & STATE
+         ===================================================================== */
+      const probe = document.getElementById('probe');
+      const shelf = document.getElementById('shelf');
+      const stage = document.getElementById('stage');
+      const playRing = document.getElementById('playRing');
+      const capTitle = document.getElementById('capTitle');
+      const capSub = document.getElementById('capSub');
+      const capYear = document.getElementById('capYear');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const tabInd = document.getElementById('tabInd');
+      const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+      const cursor = document.getElementById('cursor');
+
+      const detail = document.getElementById('detail');
+      const closeBtn = document.getElementById('closeBtn');
+      const watchBtn = document.getElementById('watchBtn');
+      const dSub = document.getElementById('dSub');
+      const dTitle = document.getElementById('dTitle');
+      const dMeta = document.getElementById('dMeta');
+      const dSyn = document.getElementById('dSyn');
+      const dLines = Array.from(detail.querySelectorAll('.d-line'));
+      const posterImg = document.getElementById('posterImg');
+      const inkCircles = Array.from(document.querySelectorAll('#inkBlobs circle'));
+      const BLOB_DELAYS = [0, 120, 220, 300, 360, 420, 180];
+
+      const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let reducedMotion = reducedMotionQuery.matches;
+      reducedMotionQuery.addEventListener('change', (e) => {
+        reducedMotion = e.matches;
+      });
+
+      // Geometry variables
+      let W = window.innerWidth;
+      let VH = window.innerHeight;
+      let H = 360;
+      let ws = 60;
+      let d = 190;
+      let gap = 11;
+
+      // Engine state (Starts on Book 1 "Who I Am: Farman": index 0 in middle copy -> 15)
+      let s = COUNT;
+      let T = COUNT;
+      let hover = -1;
+      let active = -1;
+      let mx = W / 2;
+      let my = VH / 2;
+      let cx = W / 2;
+      let cy = VH / 2;
+      let tiltX = 0;
+      let tiltY = 0;
+      let onCover = false;
+      let overBtn = false;
+      let isOpen = false;
+      let isAnimatingSheet = false;
+
+      // Drag & Wheel state
+      let isPointerDown = false;
+      let isDragging = false;
+      let suppressClick = false;
+      let dragStartX = 0;
+      let dragStartT = 0;
+      let wheelTimer = null;
+
+      // Detail animation handles
+      let sheetAnim = null;
+      let lineAnims = [];
+      let inkStartTime = 0;
+      let inkRunning = false;
+
+      /* =====================================================================
+         4. BUILD 45 BOOKS (3 COPIES OF 15 LIFE VOLUMES)
+         ===================================================================== */
+      const TOTAL_TAPES = COUNT * 3;
+      const tapes = [];
+      for (let copy = 0; copy < 3; copy++) {
+        for (let i = 0; i < COUNT; i++) {
+          const v = copy * COUNT + i;
+          const film = FILMS[i];
+
+          const tapeEl = document.createElement('div');
+          tapeEl.className = 'tape';
+          tapeEl.dataset.v = v;
+
+          const spEl = document.createElement('div');
+          spEl.className = 'face sp';
+          applyCropStyle(spEl, `spine-${film.artId}`);
+
+          const cvEl = document.createElement('div');
+          cvEl.className = 'face cv';
+          applyCropStyle(cvEl, `cover-${film.artId}`);
+
+          tapeEl.appendChild(spEl);
+          tapeEl.appendChild(cvEl);
+          stage.appendChild(tapeEl);
+
+          tapeEl.addEventListener('pointerenter', (e) => {
+            if (e.pointerType === 'mouse') hover = v;
+          });
+          tapeEl.addEventListener('pointerleave', (e) => {
+            if (e.pointerType === 'mouse' && hover === v) hover = -1;
+          });
+
+          tapeEl.addEventListener('click', () => {
+            if (suppressClick || isOpen || isAnimatingSheet) return;
+            const r = getRelativeIndex(v, s);
+            if (Math.abs(r) < 0.5) {
+              openDetail();
+            } else {
+              T = Math.round(s + r);
+            }
+          });
+
+          tapes.push({
+            v,
+            i,
+            el: tapeEl,
+            sp: spEl,
+            cv: cvEl,
+            lift: 0,
+            r: 0
+          });
+        }
+      }
+
+      /* =====================================================================
+         5. GEOMETRY & MEASUREMENTS
+         ===================================================================== */
+      function measure() {
+        W = window.innerWidth;
+        VH = window.innerHeight;
+        H = probe.getBoundingClientRect().height || Math.min(VH * 0.46, W * 0.31);
+        ws = (H * 142) / 840;
+        d = (H * 474) / 900;
+        gap = H * 0.03;
+
+        stage.style.setProperty('--ws', `${ws}px`);
+        stage.style.setProperty('--d', `${d}px`);
+
+        // Position play ring on active cover's lower-left corner
+        playRing.style.left = `${W / 2 - 0.5 * d - 6}px`;
+        playRing.style.top = `${VH / 2 + 0.36 * H}px`;
+
+        updateDecadeIndicator();
+      }
+
+      window.addEventListener('resize', measure);
+
+      /* =====================================================================
+         6. CAPTION MASK SWAP & CHAPTER INDICATOR
+         ===================================================================== */
+      function swapMaskText(container, text, dir, immediate) {
+        if (immediate || reducedMotion) {
+          container.innerHTML = '';
+          const span = document.createElement('span');
+          span.textContent = text;
+          container.appendChild(span);
+          return;
+        }
+
+        const oldSpans = Array.from(container.querySelectorAll('span'));
+        oldSpans.forEach((old) => {
+          if (old.dataset.leaving === '1') return;
+          old.dataset.leaving = '1';
+          const computed = window.getComputedStyle(old).transform;
+          const anim = old.animate(
+            [
+              { transform: computed && computed !== 'none' ? computed : 'translateY(0%)' },
+              { transform: `translateY(${-dir * 105}%)` }
+            ],
+            {
+              duration: 650,
+              easing: 'cubic-bezier(.2, .8, .2, 1)',
+              fill: 'both'
+            }
+          );
+          anim.onfinish = () => old.remove();
+        });
+
+        const nextSpan = document.createElement('span');
+        nextSpan.textContent = text;
+        container.appendChild(nextSpan);
+
+        nextSpan.animate(
+          [
+            { transform: `translateY(${dir * 105}%)` },
+            { transform: 'translateY(0%)' }
+          ],
+          {
+            duration: 650,
+            easing: 'cubic-bezier(.2, .8, .2, 1)',
+            fill: 'both'
+          }
+        );
+      }
+
+      function updateDecadeIndicator() {
+        if (active < 0) return;
+        const film = FILMS[active];
+        const decadeStr = film.decade;
+        let activeBtn = null;
+
+        tabBtns.forEach((btn) => {
+          if (btn.dataset.decade === decadeStr) {
+            btn.classList.add('active');
+            activeBtn = btn;
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        if (activeBtn) {
+          tabInd.style.width = `${activeBtn.offsetWidth}px`;
+          tabInd.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+        }
+      }
+
+      function setActive(newIndex, dir, immediate = false) {
+        if (newIndex === active && !immediate) return;
+        active = newIndex;
+        const film = FILMS[active];
+
+        swapMaskText(capTitle, film.title, dir, immediate);
+        swapMaskText(capSub, `${film.romaji} / ${film.kanji}`, dir, immediate);
+        swapMaskText(capYear, String(film.year), dir, immediate);
+
+        updateDecadeIndicator();
+      }
+
+      /* =====================================================================
+         7. MATH HELPERS FOR SHELF PLACEMENT
+         ===================================================================== */
+      function getRelativeIndex(v, scrollPos) {
+        const half = TOTAL_TAPES / 2;
+        let r = (v - scrollPos) % TOTAL_TAPES;
+        if (r > half) r -= TOTAL_TAPES;
+        if (r < -half) r += TOTAL_TAPES;
+        return r;
+      }
+
+      function B(r) {
+        if (r <= -1) return -0.5;
+        if (r >= 1) return 0.5;
+        return (r + Math.sin(Math.PI * r) / Math.PI) / 2;
+      }
+
+      function F(r) {
+        return r * (ws + gap) + (d - ws + 1.6 * gap) * B(r);
+      }
+
+      function smoothstep(x) {
+        const c = Math.max(0, Math.min(1, x));
+        return c * c * (3 - 2 * c);
+      }
+
+      /* =====================================================================
+         8. INPUT HANDLERS (TABS, ARROWS, KEYBOARD, WHEEL, DRAG, POINTER)
+         ===================================================================== */
+      prevBtn.addEventListener('click', () => {
+        if (isOpen || isAnimatingSheet) return;
+        T = Math.round(T) - 1;
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (isOpen || isAnimatingSheet) return;
+        T = Math.round(T) + 1;
+      });
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (isOpen || isAnimatingSheet) return;
+          const dec = btn.dataset.decade;
+          let targetFilmIndex = 0;
+          if (dec !== 'all') {
+            targetFilmIndex = FILMS.findIndex((f) => f.decade === dec);
+            if (targetFilmIndex === -1) targetFilmIndex = 0;
+          }
+          const currentBase = Math.round(T);
+          const currentMod = ((currentBase % COUNT) + COUNT) % COUNT;
+          let diff = targetFilmIndex - currentMod;
+          if (diff > COUNT / 2) diff -= COUNT;
+          if (diff < -COUNT / 2) diff += COUNT;
+          T = currentBase + diff;
+        });
+      });
+
+      playRing.addEventListener('click', () => {
+        if (isOpen || isAnimatingSheet) return;
+        openDetail();
+      });
+
+      // Prevent placeholder links from jumping
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => e.preventDefault());
+      });
+
+      // Button hover tracking for custom cursor
+      document.querySelectorAll('[data-btn]').forEach((el) => {
+        el.addEventListener('pointerenter', () => { overBtn = true; });
+        el.addEventListener('pointerleave', () => { overBtn = false; });
+      });
+
+      // Global Pointer Move
+      window.addEventListener('pointermove', (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+
+        if (isPointerDown && !isOpen && !isAnimatingSheet) {
+          const dx = mx - dragStartX;
+          if (!isDragging && Math.abs(dx) > 5) {
+            isDragging = true;
+            suppressClick = true;
+          }
+          if (isDragging) {
+            T = dragStartT - dx / (ws + gap);
+          }
+        }
+      });
+
+      // Shelf Drag
+      shelf.addEventListener('pointerdown', (e) => {
+        if (isOpen || isAnimatingSheet || e.button !== 0) return;
+        isPointerDown = true;
+        isDragging = false;
+        suppressClick = false;
+        dragStartX = e.clientX;
+        dragStartT = T;
+      });
+
+      window.addEventListener('pointerup', () => {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+        if (isDragging) {
+          isDragging = false;
+          T = Math.round(T);
+          setTimeout(() => { suppressClick = false; }, 60);
+        }
+      });
+
+      window.addEventListener('pointercancel', () => {
+        isPointerDown = false;
+        isDragging = false;
+        T = Math.round(T);
+      });
+
+      // Wheel Scrubbing
+      window.addEventListener('wheel', (e) => {
+        if (isOpen || isAnimatingSheet) return;
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        T += (delta / (ws + gap)) * 0.5;
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(() => {
+          T = Math.round(T);
+        }, 160);
+      }, { passive: true });
+
+      // Keyboard Controls
+      window.addEventListener('keydown', (e) => {
+        if (isAnimatingSheet) return;
+        if (e.key === 'Escape' && isOpen) {
+          closeDetail();
+          return;
+        }
+        if (isOpen) return;
+
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          T = Math.round(T) - 1;
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          T = Math.round(T) + 1;
+        } else if (e.key === 'Enter' && (document.activeElement === document.body || document.activeElement === shelf)) {
+          e.preventDefault();
+          openDetail();
+        }
+      });
+
+      /* =====================================================================
+         9. OPENING & CLOSING A BOOK (PAPER SHEET + INK REVEAL)
+         ===================================================================== */
+      function getActiveCoverRect() {
+        let bestTape = tapes[0];
+        let minDiff = Infinity;
+        for (let k = 0; k < tapes.length; k++) {
+          const diff = Math.abs(getRelativeIndex(tapes[k].v, s));
+          if (diff < minDiff) {
+            minDiff = diff;
+            bestTape = tapes[k];
+          }
+        }
+        return bestTape.cv.getBoundingClientRect();
+      }
+
+      function openDetail() {
+        if (isOpen || isAnimatingSheet) return;
+        isOpen = true;
+        isAnimatingSheet = true;
+
+        // 1. Snap T & populate book texts
+        T = Math.round(s);
+        const filmIndex = ((Math.round(s) % COUNT) + COUNT) % COUNT;
+        const film = FILMS[filmIndex];
+
+        dSub.textContent = `${film.romaji} / ${film.kanji}`;
+        dTitle.textContent = film.title;
+        dMeta.textContent = `${film.year} / ${film.genre.toUpperCase()} / ${film.min}`;
+        dSyn.textContent = film.synopsis;
+
+        // Point SVG Poster Image to the exact cropped cover on the Higgsfield sheet
+        const [sheetId, cxBox, cyBox, cwBox, chBox] = CROP[`cover-${film.artId}`];
+        const [sheetUrl, sheetW, sheetH] = SHEET[sheetId];
+        posterImg.setAttribute('href', sheetUrl);
+        posterImg.setAttribute('x', String((-cxBox * 474) / cwBox));
+        posterImg.setAttribute('y', String((-cyBox * 900) / chBox));
+        posterImg.setAttribute('width', String((sheetW * 474) / cwBox));
+        posterImg.setAttribute('height', String((sheetH * 900) / chBox));
+
+        // Reset all ink blob radii to 0
+        inkCircles.forEach((c) => c.setAttribute('r', '0'));
+
+        // Measure active cover rect on screen
+        const rect = getActiveCoverRect();
+        const cxRect = rect.left + rect.width / 2;
+        const cyRect = rect.top + rect.height / 2;
+
+        const topInset = Math.max(0, rect.top);
+        const rightInset = Math.max(0, W - rect.right);
+        const bottomInset = Math.max(0, VH - rect.bottom);
+        const leftInset = Math.max(0, rect.left);
+
+        // 2. Grow the detail sheet out of the tilted cover
+        detail.style.visibility = 'visible';
+        detail.style.transformOrigin = `${cxRect}px ${cyRect}px`;
+
+        if (sheetAnim) sheetAnim.cancel();
+        const durSheet = reducedMotion ? 1 : 1050;
+
+        sheetAnim = detail.animate(
+          [
+            {
+              clipPath: `inset(${topInset}px ${rightInset}px ${bottomInset}px ${leftInset}px round 3px)`,
+              transform: 'rotate(-4.5deg)'
+            },
+            {
+              clipPath: 'inset(0px 0px 0px 0px round 0px)',
+              transform: 'rotate(0deg)'
+            }
+          ],
+          {
+            duration: durSheet,
+            easing: 'cubic-bezier(.76, 0, .18, 1)',
+            fill: 'both'
+          }
+        );
+
+        sheetAnim.onfinish = () => {
+          isAnimatingSheet = false;
+        };
+
+        // 3. Masked text lines rise one after another
+        lineAnims.forEach((a) => a.cancel());
+        lineAnims = dLines.map((line, idx) => {
+          return line.animate(
+            [
+              { transform: 'translateY(110%)' },
+              { transform: 'translateY(0%)' }
+            ],
+            {
+              duration: reducedMotion ? 1 : 900,
+              delay: reducedMotion ? 0 : 620 + idx * 75,
+              easing: 'cubic-bezier(.2, .8, .2, 1)',
+              fill: 'both'
+            }
+          );
+        });
+
+        // 4. Start ink bleed timer
+        inkStartTime = reducedMotion ? performance.now() - 5000 : performance.now() + 520;
+        inkRunning = true;
+      }
+
+      function closeDetail() {
+        if (!isOpen || isAnimatingSheet) return;
+        isAnimatingSheet = true;
+
+        const rect = getActiveCoverRect();
+        const cxRect = rect.left + rect.width / 2;
+        const cyRect = rect.top + rect.height / 2;
+
+        const topInset = Math.max(0, rect.top);
+        const rightInset = Math.max(0, W - rect.right);
+        const bottomInset = Math.max(0, VH - rect.bottom);
+        const leftInset = Math.max(0, rect.left);
+
+        detail.style.transformOrigin = `${cxRect}px ${cyRect}px`;
+
+        if (sheetAnim) sheetAnim.cancel();
+        const durClose = reducedMotion ? 1 : 850;
+
+        sheetAnim = detail.animate(
+          [
+            {
+              clipPath: 'inset(0px 0px 0px 0px round 0px)',
+              transform: 'rotate(0deg)'
+            },
+            {
+              clipPath: `inset(${topInset}px ${rightInset}px ${bottomInset}px ${leftInset}px round 3px)`,
+              transform: 'rotate(-4.5deg)'
+            }
+          ],
+          {
+            duration: durClose,
+            easing: 'cubic-bezier(.76, 0, .18, 1)',
+            fill: 'both'
+          }
+        );
+
+        sheetAnim.onfinish = () => {
+          detail.style.visibility = 'hidden';
+          if (sheetAnim) sheetAnim.cancel();
+          lineAnims.forEach((a) => a.cancel());
+          inkRunning = false;
+          isOpen = false;
+          isAnimatingSheet = false;
+        };
+      }
+
+      closeBtn.addEventListener('click', closeDetail);
+      watchBtn.addEventListener('click', closeDetail);
+
+      /* =====================================================================
+         10. MASTER REQUESTANIMATIONFRAME LOOP
+         ===================================================================== */
+      let lastTime = performance.now();
+
+      function tick(now) {
+        const dt = Math.min(0.05, Math.max(0.001, (now - lastTime) / 1000));
+        lastTime = now;
+
+        // 1. Scroll spring physics
+        if (reducedMotion) {
+          s = T;
+        } else {
+          const k = isDragging ? 18 : 5.2;
+          s += (T - s) * (1 - Math.exp(-k * dt));
+          if (Math.abs(T - s) < 1e-4) s = T;
+        }
+
+        // Normalise endless loop if drifted beyond +-4 loops (60 units)
+        if (Math.abs(s) > COUNT * 4) {
+          const shift = Math.trunc(s / COUNT) * COUNT;
+          s -= shift;
+          T -= shift;
+          dragStartT -= shift;
+        }
+
+        // 2. Check active book & trigger caption swap
+        const currentActive = ((Math.round(s) % COUNT) + COUNT) % COUNT;
+        if (currentActive !== active) {
+          const dir = T >= s ? 1 : -1;
+          setActive(currentActive, dir, active === -1);
+        }
+
+        // 3. Test if cursor is on the open cover
+        const shelfCy = VH / 2;
+        const settled = Math.abs(T - s) < 0.3;
+        onCover =
+          !isOpen &&
+          !isAnimatingSheet &&
+          settled &&
+          Math.abs(mx - W / 2) < 0.55 * d &&
+          Math.abs(my - shelfCy) < 0.55 * H;
+
+        // 4. Tilt calculation towards cursor
+        let targetTiltY = 0;
+        let targetTiltX = 0;
+        if (onCover) {
+          targetTiltY = ((mx - W / 2) / (0.55 * d)) * 9;
+          targetTiltX = -((my - shelfCy) / (H / 2)) * 6;
+        } else {
+          targetTiltY = ((mx - W / 2) / W) * 5;
+          targetTiltX = 0;
+        }
+        const tiltEase = reducedMotion ? 1 : 1 - Math.exp(-7 * dt);
+        tiltY += (targetTiltY - tiltY) * tiltEase;
+        tiltX += (targetTiltX - tiltX) * tiltEase;
+
+        // 5. Update all 45 virtual books (3 copies of 15)
+        const cullLimit = W / 2 + 1.5 * d;
+        const liftEase = reducedMotion ? 1 : 1 - Math.exp(-12 * dt);
+
+        for (let idx = 0; idx < TOTAL_TAPES; idx++) {
+          const tape = tapes[idx];
+          const r = getRelativeIndex(tape.v, s);
+          tape.r = r;
+
+          const x = F(r);
+
+          // Horizontal culling
+          if (Math.abs(x) > cullLimit) {
+            if (tape.el.style.visibility !== 'hidden') {
+              tape.el.style.visibility = 'hidden';
+            }
+            continue;
+          } else if (tape.el.style.visibility === 'hidden') {
+            tape.el.style.visibility = 'visible';
+          }
+
+          // Hover lift on non-active spines
+          const liftTarget = hover === tape.v && Math.abs(r) > 0.5 && !isOpen ? 1 : 0;
+          tape.lift += (liftTarget - tape.lift) * liftEase;
+
+          // Openness o
+          const o = smoothstep(Math.max(0, 1 - Math.abs(r)));
+
+          const rotY = -90 * o + tiltY * o;
+          const rotX = tiltX * o;
+          const rotZ = -4.5 * o;
+          const tz = o * 0.2 * H;
+          const ty = -o * 0.025 * H - tape.lift * 0.045 * H;
+          const zIdx = Math.round(100 - Math.abs(r) * 4);
+
+          tape.el.style.zIndex = String(zIdx);
+          tape.el.style.transform = `translate3d(${x.toFixed(2)}px, ${ty.toFixed(2)}px, ${tz.toFixed(2)}px) rotateZ(${rotZ.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+          tape.el.style.setProperty('--shade-sp', (o * 0.55).toFixed(3));
+          tape.el.style.setProperty('--shade-cv', ((1 - o) * 0.5).toFixed(3));
+        }
+
+        // 6. Play ring scale
+        const ringScale = isOpen || isAnimatingSheet ? 0 : smoothstep(Math.max(0, 1 - Math.abs(T - s) * 3));
+        playRing.style.transform = `scale(${ringScale.toFixed(3)})`;
+
+        // 7. Custom cursor smoothing & state classes
+        const curEase = reducedMotion ? 1 : 1 - Math.exp(-16 * dt);
+        cx += (mx - cx) * curEase;
+        cy += (my - cy) * curEase;
+        cursor.style.transform = `translate3d(${cx.toFixed(2)}px, ${cy.toFixed(2)}px, 0)`;
+
+        const overSpine = !isOpen && hover !== -1 && Math.abs(getRelativeIndex(hover, s)) > 0.5;
+        cursor.classList.toggle('open', onCover && !overBtn);
+        cursor.classList.toggle('btn', overBtn);
+        cursor.classList.toggle('spine', overSpine && !onCover && !overBtn);
+
+        // 8. Poster SVG ink bleed loop
+        if (inkRunning) {
+          const elapsed = now - inkStartTime;
+          if (elapsed >= 0) {
+            for (let b = 0; b < 7; b++) {
+              const bElapsed = elapsed - BLOB_DELAYS[b];
+              if (bElapsed <= 0) {
+                inkCircles[b].setAttribute('r', '0');
+              } else {
+                const p = Math.min(1, bElapsed / 1250);
+                const eased = 1 - Math.pow(1 - p, 3);
+                inkCircles[b].setAttribute('r', (eased * 720).toFixed(1));
+              }
+            }
+            if (elapsed > 2400) {
+              inkRunning = false;
+            }
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      /* =====================================================================
+         11. INITIALISE (OPENS ON VOL I: WHO I AM: FARMAN)
+         ===================================================================== */
+      measure();
+      setActive(0, 1, true);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(measure);
+      }
+      requestAnimationFrame((t) => {
+        lastTime = t;
+        tick(t);
+      });
+    })();
+  </script>
+</body>
+</html>
